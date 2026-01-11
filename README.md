@@ -11,6 +11,8 @@ git clone https://github.com/docker/docker-bench-security.git
 cd docker-bench-security
 sudo bash docker-bench-security.sh
 ```
+![](./images/dockerbench_install.png)
+
 ## **Step 2 — Enable and Configure UFW Firewall**
 **Purpose:** Restrict inbound traffic and reduce attack surface.
 
@@ -31,6 +33,8 @@ sudo ufw enable
 sudo mkdir -p /etc/docker
 echo '{ "userns-remap": "default" }' | sudo tee /etc/docker/daemon.json
 ```
+![](./images/disable_root_login.png)
+
 **Restart Docker:**
 ```
 sudo systemctl restart docker
@@ -65,6 +69,8 @@ sudo chown root:docker /var/run/docker.sock
 sudo aa-status
 sudo aa-enforce /etc/apparmor.d/docker
 ```
+![](./images/apparmor_utils_install.png)
+![](./images/aa_enable.png)
 
 ## **Step 7 — Enable Seccomp Profile**
 **Purpose:** Limit syscalls available to containers.
@@ -110,11 +116,14 @@ sudo apt update
 sudo apt install -y trivy
 
 ```
+![](./images/trivy_install.png)
 
 **Scan an image:**
 ```
 trivy image nginx:latest
 ```
+![](./images/trivy_scan1.png)
+![](./images/trivy_scan2.png)
 
 ## **Step 10 — Enforce Least Privilege Containers**
 **Purpose:** Prevent containers from running with unnecessary privileges.
